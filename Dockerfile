@@ -1,6 +1,7 @@
-FROM amazoncorretto:11
-LABEL surya="i am "
-LABEL sandy="fuck you "
-RUN curl -fsSL https://referenceapplicationskhaja.s3.us-west-2.amazonaws.com/spring-petclinic-2.4.2.jar -o spring-petclinic-2.4.2.jar
-EXPOSE 8080
-CMD [ "java","-jar","/spring-petclinic-2.4.2.jar" ]
+FROM mcr.microsoft.com/dotnet/sdk:7.0
+LABEL author=khaja
+COPY nopCommerce /nopCommerce
+ENV ASPNETCORE_URLS="http://0.0.0.0:5000"
+EXPOSE 5000
+WORKDIR /nopCommerce
+CMD ["dotnet", "Nop.Web.dll"]
