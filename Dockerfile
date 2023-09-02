@@ -1,7 +1,4 @@
-FROM mcr.microsoft.com/dotnet/sdk:7.0
-LABEL author=khaja
-COPY nopCommerce /nopCommerce
-ENV ASPNETCORE_URLS="http://0.0.0.0:5000"
-EXPOSE 5000
-WORKDIR /nopCommerce
-CMD ["dotnet", "Nop.Web.dll"]
+FROM tomcat:9-jdk8
+LABEL author="khaja" organization="qt" purpose="learning"
+ADD https://referenceapplicationskhaja.s3.us-west-2.amazonaws.com/gameoflife.war /usr/local/tomcat/webapps/gameoflife.war
+EXPOSE 8080 
