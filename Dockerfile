@@ -1,4 +1,10 @@
-FROM tomcat:9-jdk8
-LABEL author="khaja" organization="qt" purpose="learning"
-ADD https://referenceapplicationskhaja.s3.us-west-2.amazonaws.com/gameoflife.war /usr/local/tomcat/webapps/gameoflife.war
-EXPOSE 8080 
+FROM amazoncorretto:11-alpine3.17
+LABEL author="khaja"
+LABEL organization="learningthoughts"
+ARG DOWNLOAD_LOCATION='https://referenceapplicationskhaja.s3.us-west-2.amazonaws.com/spring-petclinic-2.4.2.jar'
+ARG USERNAME='petclinic'
+ARG HOMEDIR='/petclinic'
+ENV TEST=hello
+RUN adduser -h ${HOMEDIR} -s /bin/sh -D ${USERNAME}
+USER ${USERNAME}
+WORKDIR ${HOMEDIR}
