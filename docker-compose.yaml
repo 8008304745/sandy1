@@ -4,7 +4,7 @@ services:
   nop:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: sandy1
     container_name: nop
     ports:
       - 32000:5000
