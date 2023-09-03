@@ -1,10 +1,7 @@
-FROM amazoncorretto:11-alpine3.17
-LABEL author="khaja"
-LABEL organization="learningthoughts"
-ARG DOWNLOAD_LOCATION='https://referenceapplicationskhaja.s3.us-west-2.amazonaws.com/spring-petclinic-2.4.2.jar'
-ARG USERNAME='petclinic'
-ARG HOMEDIR='/petclinic'
-ENV TEST=hello
-RUN adduser -h ${HOMEDIR} -s /bin/sh -D ${USERNAME}
-USER ${USERNAME}
-WORKDIR ${HOMEDIR}
+FROM mcr.microsoft.com/dotnet/sdk:7.0
+LABEL author=khaja
+COPY nopCommerce /nopCommerce
+ENV ASPNETCORE_URLS="http://0.0.0.0:5000"
+EXPOSE 5000
+WORKDIR /nopCommerce
+CMD ["dotnet", "Nop.Web.dll"]
