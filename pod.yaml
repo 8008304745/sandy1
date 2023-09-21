@@ -1,8 +1,19 @@
-apiversion: v1
-kind: pod 
-metadata: 
-  name: hello-world
-spec: 
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cm-s-demo
+  labels:
+    app: demo
+spec:
   containers:
-    - name: Webserver
-      image: nginx:1.25
+    - name: exp
+      image: alpine
+      command:
+        - sleep
+        - 1d
+      envFrom:
+        - configMapRef:
+            name: userinfo-cm
+        - secretRef:
+            name: userinfo-secret
